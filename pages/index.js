@@ -15,7 +15,7 @@ export default function Home() {
     disconnectWallet,
     createProposal,
     executeProposal,
-    userBalance,
+    mintTokens
   } = useContext(ApeDaoContext)
 
   useEffect(() => {
@@ -38,6 +38,10 @@ export default function Home() {
         <>
           <button onClick={disconnectWallet}>Disconnect Wallet</button>
           <p>Your address: {address}</p>
+
+          {address === '0x35d94e754F4c368F1A64B998751cd4d597Ae8fE6' && (
+            <button onClick={mintTokens}>mint</button>
+          )}
 
           <h2>Make a Proposal</h2>
           <input

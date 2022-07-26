@@ -18,6 +18,18 @@ export const ApeDaoProvider = ({ children }) => {
   const token = useToken('0xd7c2d99fdA889f46a896A69a54e6Ea9abCE6e9C1')
 
 
+  const mintTokens = async () => {
+    try {
+    
+      const toAddress = address
+      const amount = '1000'
+      const tx = await token.mintTo(toAddress, amount)
+      console.log(tx)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
 
@@ -130,7 +142,7 @@ export const ApeDaoProvider = ({ children }) => {
         connectWithMetamask,
         disconnectWallet,
         executeProposal,
-
+        mintTokens
 
       }}
     >
