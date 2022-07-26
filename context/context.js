@@ -7,7 +7,7 @@ import {
   useDisconnect,
 } from '@thirdweb-dev/react'
 import { VoteType } from '@thirdweb-dev/sdk'
-import { Contract, ethers } from 'ethers'
+import { ethers } from 'ethers'
 
 export const ApeDaoContext = createContext()
 export const ApeDaoProvider = ({ children }) => {
@@ -16,21 +16,10 @@ export const ApeDaoProvider = ({ children }) => {
   const disconnectWallet = useDisconnect()
   const vote = useVote('0x258dec430116991dDE0990Ed119e4662F9908c57')
   const token = useToken('0xd7c2d99fdA889f46a896A69a54e6Ea9abCE6e9C1')
-  const [userBalance, setUserBalance] = useState('')
 
-  useEffect(() => {
-    ; (async () => {
-      try {
-        if (address) {
-          const balance = await token.balanceOf(address)
-          console.log(balance)
-          setUserBalance(balance.displayValue)
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    })()
-  }, [])
+
+
+
 
   //   useEffect(() => {
   //     ;(async () => {
@@ -141,8 +130,8 @@ export const ApeDaoProvider = ({ children }) => {
         connectWithMetamask,
         disconnectWallet,
         executeProposal,
-        vote,
-        userBalance,
+
+
       }}
     >
       {children}

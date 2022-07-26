@@ -39,8 +39,6 @@ export default function Home() {
           <button onClick={disconnectWallet}>Disconnect Wallet</button>
           <p>Your address: {address}</p>
 
-          <p>Your balance: {userBalance} APE Coins</p>
-
           <h2>Make a Proposal</h2>
           <input
             placeholder='Make a Proposal'
@@ -83,7 +81,7 @@ export default function Home() {
                   })}
                   {proposal.votes.map(vote => {
                     const voteCount = ethers.utils.formatEther(vote.count)
-                    console.log(voteCount)
+
                     return (
                       <div key={Math.random()}>
                         <div>{vote.label}: {Math.trunc(voteCount)} APE Coins</div>
