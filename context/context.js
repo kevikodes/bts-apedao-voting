@@ -19,11 +19,13 @@ export const ApeDaoProvider = ({ children }) => {
   const [userBalance, setUserBalance] = useState('')
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       try {
-        const balance = await token.balanceOf(address)
-        console.log(balance)
-        setUserBalance(balance.displayValue)
+        if (address) {
+          const balance = await token.balanceOf(address)
+          console.log(balance)
+          setUserBalance(balance.displayValue)
+        }
       } catch (error) {
         console.log(error)
       }

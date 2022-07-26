@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { ApeDaoContext } from '../context/context'
+import { ethers } from 'ethers'
 
 export default function Home() {
   const [proposals, setProposals] = useState(null)
@@ -38,7 +39,7 @@ export default function Home() {
           <button onClick={disconnectWallet}>Disconnect Wallet</button>
           <p>Your address: {address}</p>
 
-          {userBalance && <p>Your balance: {userBalance} APE Coins</p>}
+          <p>Your balance: {userBalance} APE Coins</p>
 
           <h2>Make a Proposal</h2>
           <input
@@ -74,7 +75,19 @@ export default function Home() {
                         >
                           {vote.label}
                         </button>
+
+
+
                       </>
+                    )
+                  })}
+                  {proposal.votes.map(vote => {
+                    const voteCount = ethers.utils.formatEther(vote.count)
+                    console.log(voteCount)
+                    return (
+                      <div key={Math.random()}>
+                        <div>{vote.label}: {Math.trunc(voteCount)} APE Coins</div>
+                      </div>
                     )
                   })}
                   {address === '0x35d94e754F4c368F1A64B998751cd4d597Ae8fE6' && (
