@@ -17,21 +17,16 @@ export const ApeDaoProvider = ({ children }) => {
   const vote = useVote('0x258dec430116991dDE0990Ed119e4662F9908c57')
   const token = useToken('0xd7c2d99fdA889f46a896A69a54e6Ea9abCE6e9C1')
 
-
   const mintTokens = async () => {
     try {
-    
       const toAddress = address
       const amount = '1000'
       const tx = await token.mintTo(toAddress, amount)
       console.log(tx)
-
     } catch (error) {
       console.log(error)
     }
   }
-
-
 
   //   useEffect(() => {
   //     ;(async () => {
@@ -66,36 +61,36 @@ export const ApeDaoProvider = ({ children }) => {
     return res
   }
 
-  //   const createProposal = async description => {
-  //     const amount = 100_000
-  //     const executions = [
-  //       {
-  //         toAddress: token.getAddress(),
-  //         nativeTokenValue: 0,
-  //         transactionData: token.encoder.encode('mintTo', [
-  //           vote.getAddress(),
-  //           ethers.utils.parseUnits(amount.toString(), 18),
-  //         ]),
-  //       },
-  //     ]
-  //     const proposal = await vote.propose(description, executions)
-  //     console.log(proposal)
-  //   }
   const createProposal = async description => {
-    const amount = 100
+    const amount = 100_000
     const executions = [
       {
+        toAddress: token.getAddress(),
         nativeTokenValue: 0,
-        transactionData: token.encoder.encode('transfer', [
-          '0x25729A32F5C7F825Ee06b7c58fF3d1A08AD86C6c',
+        transactionData: token.encoder.encode('mintTo', [
+          vote.getAddress(),
           ethers.utils.parseUnits(amount.toString(), 18),
         ]),
-        toAddress: token.getAddress(),
       },
     ]
     const proposal = await vote.propose(description, executions)
     console.log(proposal)
   }
+  // const createProposal = async description => {
+  //   const amount = 100
+  //   const executions = [
+  //     {
+  //       nativeTokenValue: 0,
+  //       transactionData: token.encoder.encode('transfer', [
+  //         '0x25729A32F5C7F825Ee06b7c58fF3d1A08AD86C6c',
+  //         ethers.utils.parseUnits(amount.toString(), 18),
+  //       ]),
+  //       toAddress: token.getAddress(),
+  //     },
+  //   ]
+  //   const proposal = await vote.propose(description, executions)
+  //   console.log(proposal)
+  // }
 
   const executeProposal = async id => {
     const canExecute = await isExecutable(id)
@@ -142,8 +137,7 @@ export const ApeDaoProvider = ({ children }) => {
         connectWithMetamask,
         disconnectWallet,
         executeProposal,
-        mintTokens
-
+        mintTokens,
       }}
     >
       {children}
