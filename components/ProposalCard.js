@@ -81,7 +81,7 @@ const ProposalCard = ({ proposal }) => {
           })}
         </div>
         {address === '0x35d94e754F4c368F1A64B998751cd4d597Ae8fE6' &&
-          proposal.state !== 7 && (
+          proposal.state === 4 && (
             <button
               className={styles.executeButton}
               onClick={() => {
