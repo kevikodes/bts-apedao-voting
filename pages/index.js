@@ -24,7 +24,7 @@ export default function Home() {
     getAllProposals()
       .then(proposals => {
         if (proposals.length > 0) {
-          setProposals(proposals)
+          setProposals(proposals.reverse())
           console.log(proposals)
           isExecutable(proposals[0].proposalId)
         }
