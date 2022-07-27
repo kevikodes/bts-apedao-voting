@@ -80,16 +80,17 @@ const ProposalCard = ({ proposal }) => {
             )
           })}
         </div>
-        {address === '0x35d94e754F4c368F1A64B998751cd4d597Ae8fE6' && (
-          <button
-            className={styles.executeButton}
-            onClick={() => {
-              executeProposal(proposal.proposalId)
-            }}
-          >
-            Execute
-          </button>
-        )}
+        {address === '0x35d94e754F4c368F1A64B998751cd4d597Ae8fE6' &&
+          proposal.state !== 7 && (
+            <button
+              className={styles.executeButton}
+              onClick={() => {
+                executeProposal(proposal.proposalId)
+              }}
+            >
+              Execute
+            </button>
+          )}
       </div>
     </div>
   )
