@@ -36,7 +36,7 @@ const ProposalCard = ({ proposal }) => {
   useEffect(() => {
     setStatus()
     console.log('setStatus')
-  }, [proposal])
+  }, [])
   return (
     <div className={styles.card}>
       <div className={styles.top}>
