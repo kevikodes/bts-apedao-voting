@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import styles from '../styles/ProposalCard.module.css'
 import { ethers } from 'ethers'
 import { ApeDaoContext } from '../context/context'
 import truncateEthAddress from 'truncate-eth-address'
 
 const ProposalCard = ({ proposal }) => {
-  const { address, voteFor } = useContext(ApeDaoContext)
+  const { address, voteFor, executeProposal } = useContext(ApeDaoContext)
   const [statusText, setStatusText] = useState('')
   const [statusColor, setStatusColor] = useState('#fff')
 
@@ -33,10 +33,10 @@ const ProposalCard = ({ proposal }) => {
     }
   }
 
-  useEffect(() => {
+  useMemo(() => {
     setStatus()
     console.log('setStatus')
-  }, [])
+  }, [statusText, statusColor, proposal.state])
   return (
     <div className={styles.card}>
       <div className={styles.top}>
